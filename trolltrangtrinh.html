@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quà tặng bất ngờ cho bạn thân!</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        .box {
+            background: #262626;
+            padding: 40px;
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #00ff00;
+            position: relative;
+        }
+        h1 { font-size: 24px; margin-bottom: 20px; }
+        p { color: #ccc; }
+        .btn-group { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
+        button {
+            padding: 10px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+        }
+        #yes-btn { background: #00ff00; color: #000; }
+        #no-btn {
+            background: #ff0000;
+            color: #fff;
+            position: absolute;
+            transition: 0.1s;
+        }
+        #virus-screen {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: black; color: red; z-index: 100;
+            padding-top: 10%; font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>⚠️ CẢNH BÁO HỆ THỐNG ⚠️</h1>
+    <p>Phát hiện bạn là  "Trang Xinh Gái".<br>Bạn có muốn tắt chế độ này để trở về bình thường không?</p>
+    
+    <div class="btn-group">
+        <button id="yes-btn" onclick="win()">CÓ</button>
+        <button id="no-btn" onmouseover="runAway()">KHÔNG</button>
+    </div>
+</div>
+
+<div id="virus-screen">
+    <h1>💀 ĐANG QUÉT DỮ LIỆU... 💀</h1>
+    <p id="status">Đang tải ảnh "dìm hàng" lên Facebook...</p>
+    <p id="percent">0%</p>
+</div>
+
+<script>
+    // Tính năng nút "KHÔNG" chạy trốn
+    function runAway() {
+        const btn = document.getElementById('no-btn');
+        const x = Math.random() * (window.innerWidth - btn.clientWidth);
+        const y = Math.random() * (window.innerHeight - btn.clientHeight);
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+    }
+
+    // Khi nhấn CÓ (thực ra là dọa tiếp)
+    function win() {
+        document.getElementById('virus-screen').style.display = 'block';
+        let p = 0;
+        let interval = setInterval(() => {
+            p += Math.floor(Math.random() * 5) + 1;
+            if (p >= 100) {
+                p = 100;
+                clearInterval(interval);
+                alert("Chúc mừng! Bạn vừa bị troll bởi thằng bạn thân nhất quả đất! ❤️");
+                location.reload();
+            }
+            document.getElementById('percent').innerText = p + "%";
+        }, 100);
+    }
+</script>
+
+</body>
+</html>
